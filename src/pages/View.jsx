@@ -1,8 +1,8 @@
+import Layout from "../components/Layout"
+
 const View = () =>{
     return(
-        <div>
-            View
-        </div>
+        <Layout>View</Layout>
     )
 }
 export default View

@@ -1,4 +1,6 @@
 import { useState } from "react"
+import { useAppContext } from "../store/Store";
+import Layout from "../components/Layout";
 
 const Create = () => {
     const [title, setTitle] = useState("")
@@ -7,6 +9,8 @@ const Create = () => {
     const [intro, setIntro] = useState("");
     const [completed, setCompleted] = useState(false);
     const [review, setReview] = useState("");
+
+    const store = useAppContext()
 
     function handleChange(e) {
         const name = e.target.name
@@ -43,6 +47,7 @@ const Create = () => {
             review
         }
         //To do book registry
+        store.createItem(newBook);
     }
 
     function handleOnChangeFile(e) {
@@ -57,7 +62,7 @@ const Create = () => {
     }
 
     return (
-        <div>
+        <Layout>          
             <form onSubmit={handleSubmit}>
                 <div>
                     <div>Title</div>
@@ -86,7 +91,7 @@ const Create = () => {
                 </div>
                 <input type="submit" value="Register Book"/>
             </form>
-        </div>
+        </Layout>
     )
 }
 export default Create
