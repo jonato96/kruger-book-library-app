@@ -22,20 +22,69 @@ const Create = () => {
                 setIntro(value);
                 break;
             case "completed":
-                setCompleted(value);
+                setCompleted(e.target.checked);
                 break;
             case "review":
                 setReview(value);
                 break;
+            default:
         }
     }
+
+    function handleSubmit(e){
+        e.preventDefault()
+        const newBook={
+            id: crypto.randomUUID(),
+            title,
+            author,
+            cover,
+            intro,
+            completed,
+            review
+        }
+        //To do book registry
+    }
+
+    function handleOnChangeFile(e) {
+        const element = e.target;
+        var file = element.files[0];
+        var reader = new FileReader();
+        reader.onloadend = function () {
+          console.log("RESULT", reader.result);
+          setCover(reader.result.toString());
+        };
+        reader.readAsDataURL(file);
+    }
+
     return (
         <div>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <div>
                     <div>Title</div>
                     <input name="title" onChange={handleChange} value={title} type="text" />
                 </div>
+                <div>
+                    <div>Author</div>
+                    <input name="author" onChange={handleChange} value={author} type="text" />
+                </div>
+                <div>
+                    <div>Cover</div>
+                    <input name="cover" onChange={handleOnChangeFile}  type="file" />
+                    <div>{!!cover ? <img src={cover} width="200" alt="preview"/>:""}</div>
+                </div>
+                <div>
+                    <div>Intro</div>
+                    <input name="intro" onChange={handleChange} value={intro} type="text" />
+                </div>
+                <div>
+                    <div>Completed</div>
+                    <input name="completed" onChange={handleChange} value={completed} type="checkbox" />
+                </div>
+                <div>
+                    <div>Review</div>
+                    <input name="review" onChange={handleChange} value={review} type="text" />
+                </div>
+                <input type="submit" value="Register Book"/>
             </form>
         </div>
     )
