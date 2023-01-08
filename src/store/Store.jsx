@@ -1,17 +1,19 @@
 import {createContext, useContext, useEffect, useState} from 'react'
 
 const AppContext = createContext({
-    item: [],
+    items: [],
     createItem: (item)=>{},
-    getItems: (id)=>{},
+    getItem: (id)=>{},
     updateItem: (item)=>{}
 })
 
 const Store = ({children}) =>{
     const [items, setItems] = useState([])
+
     function createItem(item){
         const temp = [...items]
-        temp.push(temp)
+        temp.push(item)
+        setItems(temp)
     }
     function getItem(id) {
         const item = items.find((item) => item.id === id);

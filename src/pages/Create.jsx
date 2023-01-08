@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { useAppContext } from "../store/Store";
 import Layout from "../components/Layout";
+import { useNavigate } from "react-router-dom";
 
 const Create = () => {
     const [title, setTitle] = useState("")
@@ -11,6 +12,7 @@ const Create = () => {
     const [review, setReview] = useState("");
 
     const store = useAppContext()
+    const navigate = useNavigate()
 
     function handleChange(e) {
         const name = e.target.name
@@ -47,18 +49,19 @@ const Create = () => {
             review
         }
         //To do book registry
-        store.createItem(newBook);
+        store.createItem(newBook)
+        navigate("/")
     }
 
     function handleOnChangeFile(e) {
-        const element = e.target;
-        var file = element.files[0];
-        var reader = new FileReader();
-        reader.onloadend = function () {
-          console.log("RESULT", reader.result);
-          setCover(reader.result.toString());
-        };
-        reader.readAsDataURL(file);
+        const element = e.target
+        var file = element.files[0]
+        var reader = new FileReader()
+        reader.readAsDataURL(file)
+        reader.onloadend = function () {          
+          setCover(reader.result.toString())
+        }
+        
     }
 
     return (

@@ -5,8 +5,7 @@ const Navbar = ()=>{
         <div>
             <Link to="/">Home</Link>
             <Link to="/create">Create</Link>
-        </div>
-    
+        </div>    
     )
 }
 export default Navbar
