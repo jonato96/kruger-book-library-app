@@ -10,14 +10,14 @@ const View = () =>{
     useEffect(()=>{
         const book = store.getItem(params.bookId)
         setItem(book)
-    },[])
+    },[params, store])
     if(!item){
         return <Layout>Item 404</Layout>
     }
     return(
         <Layout>
             <h2>{item?.title}</h2>
-            <div>{item?.cover ? <img src={item.cover} width="150" /> : ""}</div>
+            <div>{item?.cover ? <img src={item.cover} width="150" alt="Portada"/> : ""}</div>
             <div>{item?.author}</div>
             <div>{item?.intro}</div>
             <div>{item?.completed ? "Completed" : "No completed yet"}</div>
